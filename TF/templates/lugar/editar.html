@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Editar Lugar</h1>
+<form method="post" action="/lugar/editar_comfirmado" enctype="multipart/form-data">
+    <label for="input_typelugar">Tipo do lugar:</label>
+    <input type="text" value="{{registo ['tipo_lugar']}}" name="input_typelugar" id="input_typelugar" required class="form-control">
+    <input type="hidden" name="ID_lugar" value="{{ registo['ID_lugar']}}">
+
+
+    <br>
+
+    <label for="input_preco">Preço:</label>
+    <input type="text" value="{{registo ['preço']}}" name="input_preco" id="input_preco"  class="form-control">
+
+    <br>
+
+    <label for="ID_parque">Nome do parque:</label>
+    <select id="ID_parque" name="ID_parque" class="form-select">
+        {% for parque in parques %}
+        <option value="{{parque['ID_parque']}}" >{{parque['nome']}}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <input type="submit" value="Atualizar" class="btn btn-lg btn-danger"/>
+    <a href="/lugar/listar" class="btn btn-info">Voltar</a>
+
+    {{ mensagem }}
+</form>
+
+
+
+
+{% endblock %}

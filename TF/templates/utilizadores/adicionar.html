@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h1>Utilizador novo</h1>
+<form action="/Utilizadores/adicionar" method="post">
+    <div class="form-group row">
+        <label class="form-label" for="nome">Nome:</label>
+        <input class="form-control" type="text" name="nome" id="nome" placeholder="Nome de utilizador" required>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="email">Email:</label>
+        <input class="form-control" type="email" name="email" required>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="password">Palavra passe:</label>
+        <input class="form-control" type="password" name="password" required>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="morada">Morada:</label>
+        <input class="form-control" type="text" name="morada">
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="cp">Código Postal:</label>
+        <input class="form-control" type="text" name="cp">
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="data_nasc">Data de nascimento:</label>
+        <input class="form-control" type="date" name="data_nasc">
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="perfil">Perfil:</label>
+        <select class="form-select" name="perfil">
+            <option value="admin">Administrador</option>
+            <option value="user">Utilizador</option>
+        </select>
+    </div>
+    <br>
+    <input class="btn btn-lg btn-danger" type="submit" value="Registar">
+    <br>
+    {{ mensagem }}
+</form>
+{% endblock %}

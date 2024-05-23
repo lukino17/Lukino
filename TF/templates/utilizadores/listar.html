@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h1>Lista de utilizadores</h1>
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Morada</th>
+        <th>CP</th>
+        <th>Perfil</th>
+        <th>Bloquear</th>
+        <th>Mudar o Perfil</th>
+        <th>Apagar</th>
+        <th>Editar</th>
+    </tr>
+    {% for registo in registos %}
+        <tr>
+            <td>{{ registo["nome"] }}</td>
+            <td>{{ registo["email"] }}</td>
+            <td>{{ registo["morada"] }}</td>
+            <td>{{ registo["cp"] }}</td>
+            <td>{{ registo["perfil"] }}</td>
+
+        
+                {% if "email" in session and session['perfil']=='admin' %}
+            <td>
+                <form method="post" action="/Utilizadores/bloquear">
+                    <input type="hidden" name="id" value="{{ registo['id'] }}" />
+                    <input type="submit" value="Bloquear" class="btn btn-danger">
+                </form>
+            </td>
+            <td>
+                <form method="post" action="/Utilizadores/perfil">
+                    <input type="hidden" name="id" value="{{ registo['id'] }}" />
+                    <input type="submit" value="Mudar o perfil" class="btn btn-danger">
+                </form>
+            </td>
+            <td>
+                <form method="post" action="/Utilizadores/apagar">
+                    <input type="hidden" name="id" value="{{ registo['id'] }}" />
+                    <input type="submit" value="Apagar" class="btn btn-danger">
+                </form>
+            </td>
+            <td>
+                <form method="post" action="/Utilizadores/editar">
+                    <input type="hidden" name="id" value="{{ registo['id'] }}" />
+                    <input type="submit" value="Editar" class="btn btn-info">
+                </form>
+            </td>
+        </tr>
+        {% endif %}
+
+    {% endfor %}
+</table>
+
+{% endblock %}

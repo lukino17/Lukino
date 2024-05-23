@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    {% if "email" in session and session['perfil']=='admin' %}
+    <main id="main" class="flexbox-col">
+      <h2>estacionamentos</h2>
+      <a class="dropdown-item" href="/estacionar/adicionar">Adicionar <img src="/static/imagens/add.png" alt="adicionar" style="width: 5%; position: relative; left: 5px; bottom: 2px;" > </a>
+      <a class="dropdown-item" href="/estacionar/listar">Listar <img src="/static/imagens/list.png" alt="adicionar" style="width: 5%; position: relative; left: 5px; bottom: 2px;" ></a>
+
+
+
+    </main>
+    {% endif %}
+{% endblock %}

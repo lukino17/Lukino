@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Lista de parques</h1>
+
+<form method="post" action="/parque/pesquisar"> 
+    Nome: <input type="text" name="nome" placeholder="Insira o nome do parque a pesquiar" class="form-control" >
+    <input type="submit" value="Pesquisa" class="btn btn-success">
+</form>
+
+<table class="table">
+    <tr>
+        <th>ID do parque</th>
+        <th>nome</th>
+        <th>Local</th>
+        <th>Estado</th>
+        <th>custo</th>
+    </tr>
+    {% for registo in registos %}
+        <tr>
+            <td> {{registo["ID_parque"]}} </td>
+            <td> {{registo["nome"]}} </td>
+            <td> {{registo["Local"]}} </td>
+            <td> {{registo["estado"]}} </td>
+            <td> {{registo["custo"]}} </td>
+
+
+        </tr>
+
+        
+        {% endfor %}
+</table>            
+
+{% endblock %}

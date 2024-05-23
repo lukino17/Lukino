@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Lista dos estacionamentos</h1>
+<table class="table">
+    <tr>
+        <th>ID lugar</th>
+        <th>Matricula</th>
+        <th>data entrada</th>
+        <th>hora de entrada</th>
+        <th>data de saida</th>
+        <th>Hora de saida</th>
+    </tr>
+    {% for registo in registos %}
+        <tr>
+            <td> {{registo["ID_lugar"]}} </td>
+            <td> {{registo["matricula"]}} </td>
+            <td> {{registo["data_entrada"]}} </td>
+            <td> {{registo["hora_entrada"]}} </td>
+            <td> {{registo["data_saida"]}} </td>
+            <td> {{registo["hora_saida"]}} </td>    
+
+
+            <td>
+                <form method="post" action="/estacionar/apagar">
+                    <input type="hidden" name="ID_estacionar"  value="{{ registo ['ID_estacionar'] }}"/>
+                    <input type="submit" class="btn btn-danger" value="Apagar">
+                </form>
+            </td>
+            <td>
+            <form method="post" action="/estacionar/editar">
+                <input type="hidden" name="ID_estacionar"  value="{{ registo ['ID_estacionar'] }}"/>
+                <input type="submit" class="btn btn-success" value="Editar">
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+</table>            
+
+{% endblock %}

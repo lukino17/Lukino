@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Lista de parques</h1>
+<table class="table">
+    <tr>
+        <th>ID parque</th>
+        <th>Nome</th>
+        <th>Localização</th>
+        <th>Estado</th>
+        <th>Custo</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for registo in registos %}
+        <tr>
+            <td> {{registo["ID_parque"]}} </td>
+            <td> {{registo["nome"]}} </td>
+            <td> {{registo["Local"]}} </td>
+            <td> {{registo["estado"]}} </td>
+            <td> {{registo["custo"]}} </td>
+            <td>
+                <form method="post" action="/parque/apagar">
+                    <input type="hidden" name="ID_parque"  value="{{ registo ['ID_parque'] }}"/>
+                    <input type="submit" class="btn btn-danger" value="Apagar">
+                </form>
+            </td>
+            <td>
+            <form method="post" action="/parque/editar">
+                <input type="hidden" name="ID_parque"  value="{{ registo ['ID_parque'] }}"/>
+                <input type="submit" class="btn btn-success" value="Editar">
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+</table>            
+
+{% endblock %}

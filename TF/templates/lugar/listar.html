@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Média dos preços</h1>
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Preço</th>
+    </tr>
+    {% for registo in medias %}
+    <tr>
+        <th>{{ registo['ParqueNome'] }}</th>
+        <th>{{ registo['media'] }}</th>
+    </tr>
+    {% endfor %}
+</table>
+
+<h1>Lista de Lugares</h1>
+
+<table class="table">
+    <tr>
+        <th>ID lugar</th>
+        <th>Tipo do lugar</th>
+        <th>preço</th>
+        <th>Nome do parque</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for registo in registos %}
+        <tr>
+            <td> {{registo["ID_lugar"]}} </td>
+            <td> {{registo["tipo_lugar"]}} </td>
+            <td> {{registo["preço"]}} </td>
+            <td> {{registo["ParqueNome"]}} </td>
+            <td>
+                <form method="post" action="/lugar/apagar">
+                    <input type="hidden" name="ID_lugar"  value="{{ registo ['ID_lugar'] }}"/>
+                    <input type="submit" class="btn btn-danger" value="Apagar">
+                </form>
+            </td>
+            <td>
+            <form method="post" action="/lugar/editar">
+                <input type="hidden" name="ID_lugar"  value="{{ registo ['ID_lugar'] }}"/>
+                <input type="submit" class="btn btn-success" value="Editar">
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+</table>            
+
+{% endblock %}

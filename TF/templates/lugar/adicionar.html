@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Adicionar Lugar</h1>
+<form method="post" action="/lugar/adicionar" enctype="multipart/form-data">
+    <label for="input_typelugar">Tipo do lugar:</label>
+    <input type="text" name="input_typelugar" id="input_typelugar" required class="form-control">
+
+
+    <br>
+
+    <label for="input_preco">Preço:</label>
+    <input type="text" name="input_preco" id="input_preco"  class="form-control">
+
+    <br>
+
+    <label for="ID_parque">Nome do parque:</label>
+    <select id="ID_parque" name="ID_parque" class="form-select">
+        {% for parque in parques %}
+        <option value="{{parque['ID_parque']}}" >{{parque['nome']}}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <input type="submit" value="Adicionar" class="btn btn-lg btn btn-danger" />
+
+
+    {{ mensagem }}
+</form>
+
+
+
+
+{% endblock %}

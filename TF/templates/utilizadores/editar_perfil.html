@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h1>Editar perfil</h1>
+<form action="/Utilizadores/perfil_confirmado" method="post">
+    <input type="hidden" id="id" name="id" value="{{ utilizador['id'] }}">
+    <div class="form-group row">
+        <label class="form-label" for="nome">Nome:</label>
+        <input value="{{ utilizador['nome'] }}" class="form-control" type="text" name="nome" id="nome" placeholder="Nome de utilizador" required>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="email">Email:</label>
+        <input value="{{ utilizador['email'] }}" class="form-control" type="email" name="email" required>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="morada">Morada:</label>
+        <input value="{{ utilizador['morada'] }}" class="form-control" type="text" name="morada">
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="cp">Código Postal:</label>
+        <input value="{{ utilizador['cp'] }}" class="form-control" type="text" name="cp">
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="form-label" for="data_nasc">Data de nascimento:</label>
+        <input value="{{ utilizador['data_nasc'] }}" class="form-control" type="date" name="data_nasc">
+    </div>
+    <br>
+    <input class="btn btn-lg btn-danger" type="submit" value="Atualizar">
+    <br>
+    {{ mensagem }}
+</form>
+{% endblock %}

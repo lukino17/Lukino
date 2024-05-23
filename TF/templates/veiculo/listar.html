@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Lista de veiculos</h1>
+<link rel="stylesheet" type="text/css" href="/static/css/dataTables.bootstrap5.min.css"/>
+<script type="text/javascript" src="/static/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="/static/js/dataTables.min.js"></script>
+<script type="text/javascript" src="/static/js/dataTables.bootstrap5.min.js"></script>
+
+
+
+<table id="tabelaVeiculos"  class="table display">
+    <thead>
+    <tr>
+        <th>Fotografia</th>
+        <th>Matricula</th>
+        <th>Marca</th>
+        <th>Categoria</th>
+        <th>Tipo do veiculo</th>
+        <th>Dono</th>
+
+
+        <th></th>
+        <th></th>
+    </tr>
+</thead><tbody>
+
+    {% for registo in registos %}
+        <tr>
+            <td><img width="200" src="/static/imagens/{{ registo['matricula'] }}.jpg"></td>
+            <td> {{registo["matricula"]}} </td>
+            <td> {{registo["marca"]}} </td>
+            <td> {{registo["categoria"]}} </td> 
+            <td> {{registo["tipo_veiculo"]}} </td>~
+            <td> {{registo["UtilizadorNome"]}} </td>
+            <td>
+                <form method="post" action="/veiculo/apagar">
+                    <input type="hidden" name="matricula"  value="{{ registo ['matricula'] }}"/>
+                    <input type="submit" class="btn btn-danger" value="Apagar">
+                </form>
+            </td>
+            <td>
+            <form method="post" action="/veiculo/editar">
+                <input type="hidden" name="matricula"  value="{{ registo ['matricula'] }}"/>
+                <input type="submit" class="btn btn-success" value="Editar">
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>            
+<script>
+    //evento onload
+    window.onload=function() {
+        new DataTable('#tabelaVeiculos',{
+            searching:false,
+            paging: true,
+           // pageLength: 5,
+            language:{
+                url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese.json"
+            }
+        });
+    }
+</script>
+{% endblock %}

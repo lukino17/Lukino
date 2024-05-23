@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Parque de estacionamento</h1>
+<script>
+    function RecuperarPassword()
+    {
+        email=document.getElementById("email").value;
+        if (email=="")
+        {
+            alert("Por favor, insira o email.");
+            return;
+        }
+        window.location.href="/recuperar_password?email="+email;
+    }
+</script>
+{% if "email" not in session or session["email"]==None %}
+<div class="">
+    <form action="/Login" method="post">
+        <h1>Login</h1>
+        Email:
+        <input class="form-control" type="email" name="email" id="email" required>
+        <br>
+        Palavra passe:
+        <input class="form-control" type="password" name="password" required>
+        <br>
+        <input class="btn btn-primary btn-lg" type="submit" value="Login">
+        <br>
+    </form>
+    {% if mensagem!=null %}
+        <button class="btn btn-danger btn-lg" onclick="RecuperarPassword()">Recuperar password</button>
+        <label class="alert alert-danger">
+            {{ mensagem }}
+        </label>
+    {% endif %}
+</div>
+{% endif %}
+
+{% if "email" in session and session["perfil"]=='admin' %}
+    <h5>Parques Abertos</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID parque</th>
+                <th>Nome</th>
+                <th>Localização</th>
+                <th>Estado</th>
+                <th>Custo</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registo in registos %}
+            <tr>
+                <td> {{registo["ID_parque"]}} </td>
+                <td> {{registo["nome"]}} </td>
+                <td> {{registo["Local"]}} </td>
+                <td style="background-color: lightgreen;"> {{registo["estado"]}} </td>
+                <td> {{registo["custo"]}} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% if "email" in session and session["perfil"]!='admin' %}
+    <h5>Meus Veículos</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Matricula</th>
+                <th>Marca</th>
+                <th>Categoria</th>
+                <th>Tipo Veiculo</th>
+                <th>Id</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registo in registos %}
+            <tr>
+                <td>{{ registo["matricula"] }}</td>
+                <td>{{ registo["marca"] }}</td>
+                <td>{{ registo["categoria"] }}</td>
+                <td>{{ registo["tipo_veiculo"] }}</td>
+                <td>{{ registo["id_utilizador"] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+<!--  <img src="/static/imagens/park.jpg" alt="adicionar" style="width: 25%; position: relative; left: 5px; bottom: 2px;" >  -->
+{% endblock %}

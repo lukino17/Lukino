@@ -1,0 +1,17 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+    <form method="POST" action="/veiculo/apagar_comfirmado">
+        <h2>Comfirma que deseja o Veiculo selecionado?</h2>
+        <br>
+        <b>Matrícula do veículo:</b><br>{{registo["matricula"]}} <br>
+        <b>Categoria do veículo:</b><br>{{registo["categoria"]}}<br>
+        <br>
+        <input type="hidden" name="matricula" value="{{registo ['matricula']}}"/> <br>
+        <input type="submit" value="Comfirmar?" class="btn btn-danger"> 
+        <a href="/veiculo/listar" class="btn btn-info">Voltar</a>
+
+    </form>
+
+{% endblock %}

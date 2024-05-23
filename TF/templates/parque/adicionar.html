@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Adicionar Parque</h1>
+<form method="post" action="/parque/adicionar" enctype="multipart/form-data">
+    <label for="input_nome">Nome:</label>
+    <input type="text" name="input_nome" id="input_nome" required class="form-control">
+
+
+    <br>
+
+    <label for="input_local">Localização:</label>
+    <input type="text" name="input_local" id="input_local"  class="form-control">
+
+    <br>
+
+    <label for="select_state">Estado:</label>
+    <select id="select_state" name="select_state" class="form-select">
+        <option value="Aberto">Aberto</option>
+        <option value="Fechado">Fechado</option>
+        <option value="Manutenção">Manutenção</option>
+    </select>
+    <br>
+
+    <label for="input_custo">Custo:</label>
+    <input type="number" name="input_custo" id="input_custo" class="form-control">
+
+    <input type="submit" value="Adicionar" class="btn btn-lg btn btn-danger" />
+
+
+    {{ mensagem }}
+</form>
+
+
+
+
+{% endblock %}

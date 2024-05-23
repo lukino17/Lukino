@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Adicionar Veiculo</h1>
+<form method="post" action="/veiculo/adicionar" enctype="multipart/form-data">
+    
+    <label for="input_matricula">Matricula:</label>
+    <input type="text" name="input_matricula" id="input_matricula" required class="form-control">
+
+    <label for="input_marca">Marca:</label>
+    <input type="text" name="input_marca" id="input_marca" required class="form-control">
+
+
+
+    <br>
+
+    <label for="select_categoria">Categoria:</label>
+    <select id="select_categoria" name="select_categoria" class="form-select">
+        <option value="Carro">Carro</option>
+        <option value="Moto">Moto</option>
+    </select>
+    <br>
+
+    <label for=" ">Tipo:</label>
+    <select id="select_tipo" name="select_tipo" class="form-select">
+        <option value="Elétrico">Elétrico</option>
+        <option value="Gasolina">Gasolina</option>
+        <option value="Gasóleo">Gasóleo</option>
+    </select>
+    <br>
+    <label for="id_utilizador">Dono:</label>
+    <select id="id_utilizador" name="id_utilizador" class="form-select">
+        {% for utilizador in registos %}
+        <option value="{{utilizador['id']}}" >{{utilizador['nome']}}</option>
+        {% endfor %}
+    </select>
+
+    <br>
+    <input class="form-control" type="file" name="fotografia">
+
+
+    <input type="submit" value="Adicionar" class="btn btn-lg btn btn-danger" />
+    
+
+    {{ mensagem }}
+</form>
+
+
+
+
+{% endblock %}

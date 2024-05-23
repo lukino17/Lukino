@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <form method="POST" action="/parque/apagar_comfirmado">
+        <h2>Comfirma que deseja o Parque selecionado?</h2>
+        <br>
+        <b>Nome do estacionamento:</b> <br>{{registo["nome"]}} <br>
+        <b>Local:</b>  <br>{{registo["local"]}}
+        <br>
+        <input type="hidden" name="ID_parque" value="{{registo ['ID_parque']}}"/> <br>
+        <input type="submit" value="Comfirmar?" class="btn btn-danger"> 
+        <a href="/parque/listar" class="btn btn-info">Voltar</a>
+
+    </form>
+
+{% endblock %}

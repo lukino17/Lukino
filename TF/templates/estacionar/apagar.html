@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <form method="POST" action="/estacionar/apagar_comfirmado">
+        <h2>Comfirma que deseja o estacionamento selecionado?</h2>
+        <br>
+        <b>Id do estacionamento:</b> <br>{{registo["ID_estacionar"]}} <br>
+        <b>Hora de entrada:</b> <br>{{registo["hora_entrada"]}} <br>
+        <b>Hora de saida:</b> <br>{{registo["hora_saida"]}}
+
+        
+        <br>
+        <input type="hidden" name="ID_estacionar" value="{{registo ['ID_estacionar']}}"/> <br>
+        <input type="submit" value="Comfirmar?" class="btn btn-danger"> 
+        <a href="/estacionar/listar" class="btn btn-info">Voltar</a>
+
+    </form>
+
+{% endblock %}

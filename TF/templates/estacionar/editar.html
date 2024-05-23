@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Editar estacionamento</h1>
+<form method="post" action="/estacionar/editar_comfirmado" enctype="multipart/form-data">
+    <label for="input_data_ent">Data entrada</label>
+    <input type="date" value="{{registo ['data_entrada']}}"  name="input_data_ent" id="input_data_ent" required class="form-control">
+    <input type="hidden" name="ID_estacionar" value="{{ registo['ID_estacionar']}}"" >
+
+
+    <br>
+
+    <label for="input_hora_ent">Hora de entrada:</label>
+    <input type="time" value="{{registo ['hora_entrada']}}"  name="input_hora_ent" id="input_hora_ent"  class="form-control">
+
+    <br>
+
+    <label for="input_data_sai">Data de saída:</label>
+    <input type="date" value="{{registo ['data_saida']}}"  name="input_data_sai" id="input_data_sai"  class="form-control">
+
+    <br>
+
+    <label for="input_hora_sai">Hora de saída:</label>
+    <input type="time" value="{{registo ['hora_saida']}}"  name="input_hora_sai" id="input_hora_sai"  class="form-control">
+
+
+    <br>
+    
+    <label for="ID_lugar">ID do lugar:</label>
+    <select id="ID_lugar" name="ID_lugar" class="form-select">
+        {% for lugar in lugares %}
+        <option value="{{lugar['ID_lugar']}}" >{{lugar['ID_lugar']}}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label for="input_matricula">Matricula do carro:</label>
+    <select id="input_matricula"  name="input_matricula" class="form-select">
+        {% for veiculo in veiculos %}
+        <option value="{{veiculo['matricula']}}" >{{veiculo['matricula']}}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <input type="submit" value="Atualizar" class="btn btn-lg btn-danger"/>
+    <a href="/estacionar/listar" class="btn btn-info">Voltar</a>
+
+
+    {{ mensagem }}
+</form>
+
+
+
+
+{% endblock %}
